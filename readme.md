@@ -12,61 +12,6 @@ This project delivers an end-to-end Machine Learning solution to predict which p
 * **Optimize:** Balance the cost of intervention against lost revenue using cost-sensitive learning.
 * **Deploy:** Provide an interactive Streamlit dashboard for clinic managers to operationalize the insights daily.
 
-**Training the Model**
-Run the model.py to clean data, engineer features, and train the XGBoost model.
-
-```bash
-python model.py
-
-```
-
-**Launch the Dashboard**
-
-```bash
-streamlit run clinic_dashboard.py
-
-```
-
----
-
-### Data Sources
-
-The project relies on internal operational data structured as follows.
-
-* **Source:** Synthetic Data mimicking PHN's internal Electronic Health Record (EHR) exports.
-* **Scale:** ~100,000 historical appointments.
-* **Key Features:**
-* **Demographics:** Age, Gender, Neighbourhood, Insurance Type.
-* **Clinical:** Hypertension, Diabetes, Handicap status.
-* **Operational:** Lead time (days between booking and appointment), SMS received, Past no-shows.
-* **Logistics:** Distance to clinic (miles), Transportation availability.
-
-
-* **Preprocessing:**
-* Date conversion and feature extraction (Day of Week, Month).
-* Target encoding for Categorical variables.
-* Creation of interaction features (e.g., `Interaction_LeadTime_Distance`) to capture complex behavioral drivers.
-
-
----
-
-### Code Structure
-
-```text
-├── clinic_dashboard.py      #Streamlit application for the operational front-end
-├── model.py                 #Main ETL, Training, Evaluation, and Financial Analysis script
-├── dataset/
-│   └──Panhandle_Health_Network_appointment_analysis.csv             #PHN Dataset
-├── model/
-│   └──Panhandle_Health_Network_XGBoost_model.pkl              #Serialized trained model (generated after running pipeline)
-├── shap_summary.png         #Generated interpretation plot
-├── PHN_Dashboard.png         #Dashboard snapshot
-└── README.md                #Project documentation
-
-```
-
----
-
 ## Results and Evaluation
 
 ### **Model Performance & Impact Analysis**
@@ -140,6 +85,61 @@ To further enhance the predictive power and operational utility of this project,
 * **NLP on Notes:** Analyze unstructured text from "Appointment Notes" to detect hesitation or scheduling conflicts mentioned during booking.
 * **A/B Testing:** Deploy the model in a pilot clinic to measure the actual reduction in no-show rates against a control group (random intervention).
 * **Dockerization:** Containerize the application for easier deployment on cloud infrastructure (AWS/Azure).
+
+---
+
+**Training the Model**
+Run the model.py to clean data, engineer features, and train the XGBoost model.
+
+```bash
+python model.py
+
+```
+
+**Launch the Dashboard**
+
+```bash
+streamlit run clinic_dashboard.py
+
+```
+
+---
+
+### Data Sources
+
+The project relies on internal operational data structured as follows.
+
+* **Source:** Synthetic Data mimicking PHN's internal Electronic Health Record (EHR) exports.
+* **Scale:** ~100,000 historical appointments.
+* **Key Features:**
+* **Demographics:** Age, Gender, Neighbourhood, Insurance Type.
+* **Clinical:** Hypertension, Diabetes, Handicap status.
+* **Operational:** Lead time (days between booking and appointment), SMS received, Past no-shows.
+* **Logistics:** Distance to clinic (miles), Transportation availability.
+
+
+* **Preprocessing:**
+* Date conversion and feature extraction (Day of Week, Month).
+* Target encoding for Categorical variables.
+* Creation of interaction features (e.g., `Interaction_LeadTime_Distance`) to capture complex behavioral drivers.
+
+
+---
+
+### Code Structure
+
+```text
+├── clinic_dashboard.py      #Streamlit application for the operational front-end
+├── model.py                 #Main ETL, Training, Evaluation, and Financial Analysis script
+├── dataset/
+│   └──Panhandle_Health_Network_appointment_analysis.csv             #PHN Dataset
+├── model/
+│   └──Panhandle_Health_Network_XGBoost_model.pkl              #Serialized trained model (generated after running pipeline)
+├── shap_summary.png         #Generated interpretation plot
+├── PHN_Dashboard.png         #Dashboard snapshot
+└── README.md                #Project documentation
+
+```
 
 ---
 
